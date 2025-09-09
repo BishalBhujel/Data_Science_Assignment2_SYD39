@@ -42,6 +42,21 @@ plt.xticks([0,1], ['Risk Avoidance', 'Risk Taking'])
 plt.title("Bat Risk-Taking vs Avoidance")
 plt.show()
 
-
 reward_counts = dataset1['reward'].value_counts().rename({0: 'No Reward', 1: 'Reward'})
 print("\nReward Behaviour Counts:\n", reward_counts)
+
+# Plotting the reward behaviour and repeating the same process as for risk behaviour
+plt.figure(figsize=(18,8))
+sns.countplot(x='reward', data=dataset1, palette="Set1")
+plt.xticks([0,1], ['No Reward', 'Reward'])
+plt.title("Bat Reward Behaviour")
+plt.show()
+
+# Plotting the risk behaviour by season and repeating the same process as for risk behaviour
+# Risk behaviour by season
+plt.figure(figsize=(18,8))
+sns.countplot(x='season', hue='risk', data=dataset1, palette="muted")
+plt.xticks(rotation=30)
+plt.legend(title="Risk (0=Avoid,1=Take)")
+plt.title("Risk Behaviour Across Seasons")
+plt.show()
