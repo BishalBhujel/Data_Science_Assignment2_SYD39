@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import chi2_contingency, pearsonr
 
 
 # Loading the data sets using the pandas library
@@ -74,3 +75,39 @@ sns.lineplot(x='time', y='food_availability', data=dataset2)
 plt.xticks(rotation=45)
 plt.title("Food Availability Over Time")
 plt.show()
+
+# Inferential Analysis
+# 1. Chi-Square Test: Risk vs Reward
+
+# Create contingency table
+contingency_table = pd.crosstab(dataset1['risk'], dataset1['reward'])
+print("Contingency Table (Risk vs Reward):\n")
+print(contingency_table, "\n")
+
+# Perform chi-square test
+chi2, p, dof, expected = chi2_contingency(contingency_table)
+
+print("Chi-square Test Results (Risk vs Reward):")
+print("Chi2 statistic:", chi2)
+print("Degrees of freedom:", dof)
+print("Expected frequencies:\n", expected)
+print("p-value:", p)
+
+if p < 0.05:
+    print("\n✅ Significant relationship between Risk and Reward (p < 0.05)")
+else:
+    print("\n❌ No significant relationship between Risk and Reward (p >= 0.05)")
+
+
+# 2. Correlation Test: Rat Arrivals vs Bat Landings
+print("\nCorrelation Test (Rat arrivals vs Bat landings):")
+
+corr, pval = pearsonr(dataset2['rat_arrival_number'], dataset2['bat_landing_number'])
+
+print("Correlation coefficient (r):", corr)
+print("p-value:", pval)
+
+if pval < 0.05:
+    print("✅ Significant correlation between Rat arrivals and Bat landings (p < 0.05)")
+else:
+    print("❌ No significant correlation (p >= 0.05)")
