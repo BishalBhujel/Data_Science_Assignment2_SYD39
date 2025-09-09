@@ -60,3 +60,17 @@ plt.xticks(rotation=30)
 plt.legend(title="Risk (0=Avoid,1=Take)")
 plt.title("Risk Behaviour Across Seasons")
 plt.show()
+
+plt.figure(figsize=(18,8))
+sns.scatterplot(x='rat_arrival_number', y='bat_landing_number', data=dataset2)
+plt.title("Relationship Between Rat Arrivals and Bat Landings")
+plt.xlabel("Number of Rat Arrivals")
+plt.ylabel("Number of Bat Landings")
+plt.show()
+
+# Line plot: Food availability over time
+plt.figure(figsize=(18,8))
+sns.lineplot(x='time', y='food_availability', data=dataset2)
+plt.xticks(rotation=45)
+plt.title("Food Availability Over Time")
+plt.show()
