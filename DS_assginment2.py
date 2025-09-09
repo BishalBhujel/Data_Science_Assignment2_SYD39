@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 # Loading the data sets using the pandas library
@@ -30,3 +32,16 @@ print("\nMissing values in Dataset2:\n", dataset2.isnull().sum())
 risk_counts = dataset1['risk'].value_counts().rename({0: 'Risk Avoidance', 1: 'Risk Taking'})
 # Printing the values in the terminal
 print("Risk Behaviour Counts:\n", risk_counts)
+
+plt.figure(figsize=(18,8))
+# Plotting a graph by looking into risk column for occurance of different values i.e. 0 and 1 
+sns.countplot(x='risk', data=dataset1, palette="Set2")
+# Renaming the values for descriptive representation in the graph
+plt.xticks([0,1], ['Risk Avoidance', 'Risk Taking'])
+# Providing the heading name to the graph
+plt.title("Bat Risk-Taking vs Avoidance")
+plt.show()
+
+
+reward_counts = dataset1['reward'].value_counts().rename({0: 'No Reward', 1: 'Reward'})
+print("\nReward Behaviour Counts:\n", reward_counts)
