@@ -24,15 +24,25 @@ We will perform both:
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy.stats import chi2_contingency, pearsonr
+from scipy.stats import chi2_contingency, pearsonr, ttest_ind, mannwhitneyu
+import numpy as np
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.stats.proportion import proportions_ztest
 
 # Configuring the specific style i.e graph background is white, muted colors and bigger font size
 sns.set(style="whitegrid", palette="muted", font_scale=1.1)
+plt.rcParams['figure.figsize'] = (10, 6)
 
 
 # Loading the data sets using the pandas library
 dataset1 = pd.read_csv("dataset1.csv")
 dataset2 = pd.read_csv("dataset2.csv")
+
+# Printing the shape of the provided datasets
+print("Loaded datasets:")
+print(" - Dataset1 shape:", dataset1.shape)
+print(" - Dataset2 shape:", dataset2.shape)
 
 # Previewing the data sets for futhur cleaning and processing
 print("Dataset1 (Bat Landings):")
